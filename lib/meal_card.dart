@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'meal_model.dart';
+import 'meal_detail_page.dart';
 
 class MealCard extends StatefulWidget {
   final Meal meal;
@@ -17,11 +18,24 @@ class _MealCardState extends State<MealCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
-      child: Container(
-        height: 300.0,
-        child: mealCard,
+    return InkWell(
+      onTap: showMealDetailPage,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
+        child: Container(
+          height: 300.0,
+          child: mealCard,
+        ),
+      ),
+    );
+  }
+
+  showMealDetailPage() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) {
+          return MealDetailPage(meal);
+        },
       ),
     );
   }
@@ -77,10 +91,10 @@ class _MealCardState extends State<MealCard> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(widget.meal.name,
-                    style: Theme.of(context).textTheme.headline),
+                      style: Theme.of(context).textTheme.headline),
                   Text('${widget.meal.price}₽',
-                    style: Theme.of(context).textTheme.headline),
-                ],                
+                      style: Theme.of(context).textTheme.headline),
+                ],
               ),
               Text(widget.meal.location,
                   style: Theme.of(context).textTheme.subhead),
