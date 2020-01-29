@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'meal_model.dart';
 import 'meal_list.dart';
+import 'menu.dart';
 
 void main() => runApp(TheApp());
 
@@ -42,6 +43,9 @@ class _TheHomePageState extends State<TheHomePage> {
           child: Center(
         child: MealList(initialMeals),
       )),
+      drawer: new Drawer(
+        child: TheAppMenuPage(),
+      ),
     );
   }
 }
