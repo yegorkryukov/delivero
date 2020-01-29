@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'meal_model.dart';
-import 'meal_card.dart';
+import 'meal_list.dart';
 
 void main() => runApp(TheApp());
 
@@ -29,7 +29,8 @@ class TheHomePage extends StatefulWidget {
 class _TheHomePageState extends State<TheHomePage> {
   List<Meal> initialMeals = []
     ..add(Meal('Плов', 'Чайхона №1', 'Лучший плов в городе', '10.0'))
-    ..add(Meal('Самса', 'Чайхона №2', 'Лучшая самса в городе', '25.0'));
+    ..add(Meal('Самса', 'Чайхона №2', 'Лучшая самса в городе', '25.0'))
+    ..add(Meal('Burger', 'SteakHouse', 'The burgers of the house', '45.0'));
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +39,9 @@ class _TheHomePageState extends State<TheHomePage> {
         title: Text(widget.title),
       ),
       body: Container(
-        child: MealCard(initialMeals[1]),
-      ),
+          child: Center(
+        child: MealList(initialMeals),
+      )),
     );
   }
 }
