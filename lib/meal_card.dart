@@ -44,7 +44,25 @@ class _MealCardState extends State<MealCard> {
   String renderUrl;
 
   Widget get mealImage {
-    return Container(
+    var placeholder = Container(
+      // width: 100.0,
+      height: 200.0,
+      decoration: BoxDecoration(
+        shape: BoxShape.rectangle,
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [Colors.grey, Colors.white, Colors.grey],
+        ),
+      ),
+      alignment: Alignment.center,
+      child: Text(
+        'Meal photo is loading',
+        textAlign: TextAlign.center,
+      ),
+    );
+
+    var mealAvatar = Container(
       // width: 300.0,
       height: 200.0,
       decoration: BoxDecoration(
@@ -54,6 +72,15 @@ class _MealCardState extends State<MealCard> {
           image: NetworkImage(renderUrl ?? ''),
         ),
       ),
+    );
+
+    return AnimatedCrossFade(
+      firstChild: placeholder,
+      secondChild: mealAvatar,
+      crossFadeState: renderUrl == null
+          ? CrossFadeState.showFirst
+          : CrossFadeState.showSecond,
+      duration: Duration(milliseconds: 1000),
     );
   }
 
