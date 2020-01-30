@@ -8,7 +8,7 @@ class Meal {
   final String price;
   String imageUrl;
 
-  int rating = 0;
+  double rating = 0;
 
   Meal(this.name, this.location, this.description, this.price);
 

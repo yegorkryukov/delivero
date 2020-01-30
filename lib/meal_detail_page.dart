@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'meal_model.dart';
+import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 class MealDetailPage extends StatefulWidget {
   final Meal meal;
@@ -19,23 +20,6 @@ class _MealDetailPageState extends State<MealDetailPage> {
       width: mealAvatarSize,
       decoration: BoxDecoration(
         shape: BoxShape.rectangle,
-        boxShadow: [
-          const BoxShadow(
-              offset: const Offset(1.0, 2.0),
-              blurRadius: 2.0,
-              spreadRadius: -1.0,
-              color: const Color(0x33000000)),
-          const BoxShadow(
-              offset: const Offset(2.0, 1.0),
-              blurRadius: 3.0,
-              spreadRadius: 0.0,
-              color: const Color(0x24000000)),
-          const BoxShadow(
-              offset: const Offset(3.0, 1.0),
-              blurRadius: 4.0,
-              spreadRadius: 2.0,
-              color: const Color(0x1F000000)),
-        ],
         image: DecorationImage(
           fit: BoxFit.cover,
           image: NetworkImage(widget.meal.imageUrl),
@@ -44,41 +28,64 @@ class _MealDetailPageState extends State<MealDetailPage> {
     );
   }
 
-  Widget get rating {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Icon(
-          Icons.star,
-          size: 40.0,
-        ),
-        Text(' ${widget.meal.rating} / 10',
-            style: Theme.of(context).textTheme.display2)
-      ],
-    );
-  }
-
   Widget get mealProfile {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 32.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+      child: ListView(
         children: <Widget>[
           mealImage,
-          Text(
-            widget.meal.name,
-            style: TextStyle(fontSize: 32.0),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: 8.0,
+              horizontal: 8.0,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(widget.meal.name,
+                    style: Theme.of(context).textTheme.headline),
+                Text('${widget.meal.price}₽',
+                    style: Theme.of(context).textTheme.headline),
+              ],
+            ),
           ),
-          Text(
-            widget.meal.location,
-            style: TextStyle(fontSize: 20.0),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: 8.0,
+              horizontal: 8.0,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                SmoothStarRating(
+                    allowHalfRating: true,
+                    onRatingChanged: (v) {
+                      widget.meal.rating = v;
+                      setState(() {});
+                    },
+                    starCount: 5,
+                    rating: widget.meal.rating,
+                    size: 25.0,
+                    filledIconData: Icons.star,
+                    halfFilledIconData: Icons.star_half,
+                    spacing: 0.0)
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: 8.0,
+              horizontal: 8.0,
+            ),
+            child: Text(
+              widget.meal.location,
+              style: TextStyle(fontSize: 20.0),
+            ),
           ),
           Padding(
             padding:
-                const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
+                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
             child: Text(widget.meal.description),
           ),
-          rating
         ],
       ),
     );

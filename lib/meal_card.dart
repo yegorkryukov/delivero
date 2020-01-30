@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'meal_model.dart';
 import 'meal_detail_page.dart';
+import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 class MealCard extends StatefulWidget {
   final Meal meal;
@@ -96,16 +97,25 @@ class _MealCardState extends State<MealCard> {
                       style: Theme.of(context).textTheme.headline),
                 ],
               ),
-              Text(widget.meal.location,
-                  style: Theme.of(context).textTheme.subhead),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Icon(
-                    Icons.star,
-                  ),
-                  Text(': ${widget.meal.rating} / 5')
+                  Text(widget.meal.location,
+                      style: Theme.of(context).textTheme.subhead),
+                  SmoothStarRating(
+                      allowHalfRating: true,
+                      // onRatingChanged: (v) {
+                      //   widget.meal.rating = v;
+                      //   setState(() {});
+                      // },
+                      starCount: 5,
+                      rating: widget.meal.rating,
+                      size: 15.0,
+                      filledIconData: Icons.star,
+                      halfFilledIconData: Icons.star_half,
+                      spacing: 0.0)
                 ],
-              )
+              ),
             ],
           ),
         ),

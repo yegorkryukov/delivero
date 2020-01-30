@@ -76,8 +76,8 @@ class _ContactFormPageState extends State<ContactFormPage> {
                         child: RaisedButton(
                           onPressed: () {
                             if (_contactFormKey.currentState.validate()) {
-                              // If the form is valid, display a snackbar. In the real world,
-                              // you'd often call a server or save the information in a database.
+                              // If the form is valid, display a snackbar. 
+                              // finish the call to a server or send email
                               Scaffold.of(context).showSnackBar(
                                   SnackBar(content: Text('Processing Data')));
                             }
