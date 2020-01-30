@@ -62,14 +62,17 @@ class _MealCardState extends State<MealCard> {
       ),
     );
 
-    var mealAvatar = Container(
-      // width: 300.0,
-      height: 200.0,
-      decoration: BoxDecoration(
-        shape: BoxShape.rectangle,
-        image: DecorationImage(
-          fit: BoxFit.cover,
-          image: NetworkImage(renderUrl ?? ''),
+    var mealAvatar = Hero(
+      tag: meal,
+      child: Container(
+        // width: 300.0,
+        height: 200.0,
+        decoration: BoxDecoration(
+          shape: BoxShape.rectangle,
+          image: DecorationImage(
+            fit: BoxFit.cover,
+            image: NetworkImage(renderUrl ?? ''),
+          ),
         ),
       ),
     );

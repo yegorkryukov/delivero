@@ -15,14 +15,17 @@ class _MealDetailPageState extends State<MealDetailPage> {
   final double mealAvatarSize = 350.0;
 
   Widget get mealImage {
-    return Container(
-      height: mealAvatarSize,
-      width: mealAvatarSize,
-      decoration: BoxDecoration(
-        shape: BoxShape.rectangle,
-        image: DecorationImage(
-          fit: BoxFit.cover,
-          image: NetworkImage(widget.meal.imageUrl),
+    return Hero(
+      tag: widget.meal,
+      child: Container(
+        height: mealAvatarSize,
+        width: mealAvatarSize,
+        decoration: BoxDecoration(
+          shape: BoxShape.rectangle,
+          image: DecorationImage(
+            fit: BoxFit.cover,
+            image: NetworkImage(widget.meal.imageUrl),
+          ),
         ),
       ),
     );
