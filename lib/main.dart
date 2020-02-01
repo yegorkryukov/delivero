@@ -3,6 +3,11 @@ import 'meal_model.dart';
 import 'meal_list.dart';
 import 'menu.dart';
 
+
+// finish setting up firebase analytics from this link:
+// https://firebase.google.com/docs/flutter/setup
+
+
 void main() => runApp(TheApp());
 
 class TheApp extends StatelessWidget {
