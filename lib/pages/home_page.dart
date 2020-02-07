@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:delivero/containers/counter/counter.dart';
+import 'package:delivero/containers/counter/increase_counter.dart';
 
 class HomePage extends StatelessWidget {
   final String title;
@@ -19,15 +21,12 @@ class HomePage extends StatelessWidget {
               new Text(
                 'You have pushed the button this many times:',
               ),
-              new Text('0'),
+              new Counter(),                                    // updated
             ],
           ),
         ),
       ),
-      floatingActionButton: new FloatingActionButton(
-        onPressed: () => print('PRESSED!'),
-        child: new Icon(Icons.add),
-      ),
+      floatingActionButton: new IncreaseCountButton()           // updated
     );
   }
 }

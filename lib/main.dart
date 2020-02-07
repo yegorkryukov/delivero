@@ -1,16 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:redux/redux.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 import 'package:delivero/pages/home_page.dart';
+import 'package:delivero/models/app_state.dart';
+import 'package:delivero/reducers/app_reducer.dart';
 
 void main() => runApp(new TheApp());
 
 class TheApp extends StatelessWidget {
-  String title = 'Me Suite'; // new
+  final String title = 'Delivero'; // new
+
+  final store = new Store<AppState>(
+    appReducer,
+    initialState: new AppState(),
+    middleware: [],
+  );
+
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      // updated
-      title: title, // new
-      home: new HomePage(title), // new
+    return new StoreProvider(
+      store: store, 
+      child: new MaterialApp(
+        title: title,
+        home: new HomePage(title),
+      ),
     );
   }
 }
