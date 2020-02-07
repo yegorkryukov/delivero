@@ -35,6 +35,9 @@ dependencies:
   # For example, to use Firebase Authentication and Cloud Firestore
   firebase_auth: ^0.15.4
   cloud_firestore: ^0.13.0+1
+  google_sign_in: ^4.1.1 
+
+  flutter_redux: ^0.6.0
 
 
 dev_dependencies:

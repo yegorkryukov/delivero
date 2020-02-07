@@ -1,23 +1,27 @@
 import 'package:flutter/material.dart';
-import 'app.dart';
-import 'app_state_container.dart';
+import 'package:delivero/pages/home_page.dart';
 
-void main()  {
-  runApp(new AppRootWidget());
+void main() => runApp(new TheApp());
+
+class TheApp extends StatelessWidget {
+  String title = 'Me Suite'; // new
+  @override
+  Widget build(BuildContext context) {
+    return new MaterialApp(
+      // updated
+      title: title, // new
+      home: new HomePage(title), // new
+    );
+  }
 }
-
-
-
 
 // import 'package:flutter/material.dart';
 // import 'meal_model.dart';
 // import 'meal_list.dart';
 // import 'menu.dart';
 
-
 // // finish setting up firebase analytics from this link:
 // // https://firebase.google.com/docs/flutter/setup
-
 
 // void main() => runApp(TheApp());
 
