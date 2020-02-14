@@ -18,7 +18,7 @@ class Counter extends StatelessWidget {
           	// So this will be rerendered when that slice of
           	// state changes
             vm.count.toString(),
-            style: Theme.of(context).textTheme.headline4,
+            style: Theme.of(context).textTheme.headline3,
           );
         }
 			);
